@@ -17,7 +17,7 @@ async function start() {
         var plate = il;
         var diyanetId = CITIES[il].diyanetId;
         var name = CITIES[il].name;
-        var url = DIYANET_BASE_URL + diyanetId
+        var url = DIYANET_BASE_URL + diyanetId + "/" + HAVA_URLS[il].slug + "-icin-namaz-vakti"
         //console.log("Fetching... " + name);
         //entities.decodeXML("")
         var fullRawHTML = await fetchAsync(url);
