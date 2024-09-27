@@ -18,7 +18,7 @@ async function fetchAsync (url, type) {
     }
 }
 
-const fetchRetry = async (url, options, attempt) => {
+const fetchRetry = async (url, options, attempt, type) => {
 if (typeof global !== 'undefined') {
   var self = global.self;
 }
@@ -31,7 +31,13 @@ if (typeof global !== 'undefined') {
                     throw new Error("Invalid response.");
                 }
                 console.log("deneme " + attempt + " başarılı " + (new Date()).toString() )
-                return await response;
+                  if (type=="json"){
+        return await response.json();
+    }
+
+    else{
+        return await response.text();
+    }
 
             } catch (error) {
                 if (attempt <= 1) {
