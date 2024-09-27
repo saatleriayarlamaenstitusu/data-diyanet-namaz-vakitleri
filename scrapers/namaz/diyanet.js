@@ -22,8 +22,8 @@ async function start() {
         //entities.decodeXML("")
 
         try {
-            var fullRawHTML = await fetchRetry(url);
-
+            var fullRawHTML = await fetchRetry(url,{},3);
+            
         } catch (error) {
             console.log(`HATA:il: url: ${url}   \n${error}`);
             continue;
