@@ -4,7 +4,7 @@ const { DIYANET_BASE_URL, CITIES } = require(`${BASE}urls.js`);
 const fs = require("fs");
 const entities = require("entities");
 const { parse } = require('node-html-parser');
-const { fetchAsync } = require(`${BASE}utils.js`);
+const { fetchAsync,fetchRetry } = require(`${BASE}utils.js`);
 
 async function start() {
     var logs = "";
@@ -22,7 +22,7 @@ async function start() {
         //entities.decodeXML("")
 
         try {
-            var fullRawHTML = await fetchAsync(url);
+            var fullRawHTML = await fetchRetry(url);
 
         } catch (error) {
             console.log(`HATA:il: url: ${url}   \n${error}`);
