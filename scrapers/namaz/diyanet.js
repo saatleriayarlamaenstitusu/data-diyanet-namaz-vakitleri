@@ -77,6 +77,12 @@ function writeFile(data, name, dir, ext) {
                 merged = Object.assign({}, existing, data);
             } catch (e) {}
         }
+        const cutoff = new Date();
+        cutoff.setDate(cutoff.getDate() - 5);
+        const cutoffStr = cutoff.toISOString().slice(0, 10);
+        for (const key of Object.keys(merged)) {
+            if (key < cutoffStr) delete merged[key];
+        }
         fs.writeFileSync(filePath, JSON.stringify(merged));
     } else {
         fs.writeFile(filePath, data, () => {});
