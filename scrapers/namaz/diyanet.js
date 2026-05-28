@@ -68,10 +68,19 @@ async function start() {
 }
 
 function writeFile(data, name, dir, ext) {
-    var data = (ext == "json") ? JSON.stringify(data) : data;
-    fs.writeFile(dir + name + "." + ext, data, () => {
-        //console.log(dir+name+"."+ext," yazıldı")
-    });
+    const filePath = dir + name + "." + ext;
+    if (ext === "json") {
+        let merged = data;
+        if (fs.existsSync(filePath)) {
+            try {
+                const existing = JSON.parse(fs.readFileSync(filePath, "utf8"));
+                merged = Object.assign({}, existing, data);
+            } catch (e) {}
+        }
+        fs.writeFileSync(filePath, JSON.stringify(merged));
+    } else {
+        fs.writeFile(filePath, data, () => {});
+    }
 }
 
 
