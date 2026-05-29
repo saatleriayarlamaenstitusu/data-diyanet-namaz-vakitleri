@@ -709,7 +709,7 @@ const CITIES = {
       "trthaber": "https://www.trthaber.com/kirikkale-hava-durumu.html"
     },
     "slug": "kirikkale",
-    "diyanetId": "9638"
+    "diyanetId": "9635"
   },
   "72": {
     "plate": 72,
